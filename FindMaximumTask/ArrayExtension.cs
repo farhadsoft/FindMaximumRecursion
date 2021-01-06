@@ -26,16 +26,22 @@ namespace FindMaximumTask
                 throw new ArgumentException($"Thrown when array is empty. {nameof(array)}");
             }
 
-            int max = int.MinValue;
-            for (int i = 0; i < array.Length; i++)
+            return Max(array, array.Length);
+        }
+
+        public static int Max(int[] array, int i)
+        {
+            if (array is null)
             {
-                if (array[i] > max)
-                {
-                    max = array[i];
-                }
+                throw new ArgumentNullException($"Thrown when array is null. {nameof(array)}");
             }
 
-            return max;
+            if (i == 1)
+            {
+                return array[0];
+            }
+
+            return Math.Max(array[i - 1], Max(array, i - 1));
         }
     }
 }
